@@ -1,7 +1,14 @@
 import style from "./InputField.module.css";
 
-const InputField = () => {
-  return <input className={style.display} type="text"></input>;
+const InputField = ({ currExpression }) => {
+  return (
+    <input
+      className={style.display}
+      type="text"
+      value={currExpression}
+      readOnly={true}
+    ></input>
+  );
 };
 
 export default InputField;

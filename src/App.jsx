@@ -3,6 +3,7 @@ import ButtonContainer from "./components/ButtonContainer";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import style from "./App.module.css";
+import { useState } from "react";
 
 function App() {
   let InputItems = [
@@ -24,10 +25,29 @@ function App() {
     "/",
     "=",
   ];
+  let clearExpression = () => {
+    setCurrExpression("");
+  };
+  let [currExpression, setCurrExpression] = useState("");
+  const onButtonInput = (item) => {
+    if (item === "C") {
+      clearExpression();
+    } else if (item === "=") {
+      const res = eval(currExpression);
+      setCurrExpression(res);
+    } else {
+      setCurrExpression(currExpression + item);
+    }
+
+    console.log(currExpression);
+  };
   return (
     <div className={style.calculatorContainer}>
-      <InputField />
-      <ButtonContainer Items={InputItems}></ButtonContainer>
+      <InputField currExpression={currExpression} />
+      <ButtonContainer
+        Items={InputItems}
+        onButtonInput={onButtonInput}
+      ></ButtonContainer>
     </div>
   );
 }

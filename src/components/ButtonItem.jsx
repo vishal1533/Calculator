@@ -1,12 +1,9 @@
 import style from "./ButtonItem.module.css";
 
-const ButtonItem = ({ Item }) => {
+const ButtonItem = ({ Item, onButtonInput }) => {
   return (
     <>
-      <button
-        className={style.button}
-        onClick={() => console.log(`${Item} Clicked`)}
-      >
+      <button className={style.button} onClick={() => onButtonInput(Item)}>
         {Item}
       </button>
     </>
